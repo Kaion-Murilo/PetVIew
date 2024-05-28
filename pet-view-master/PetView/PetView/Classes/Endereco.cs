@@ -15,7 +15,7 @@ namespace PetView
         public string Complemento { get; set; }
         public string Cidade { get; set; }
         public string UF { get; set; }
-
+        ///Builder(Inicio)
         public class EnderecoBuilder
         {
             private Endereco endereco;
@@ -71,6 +71,7 @@ namespace PetView
             {
                 return endereco;
             }
+            ///Builder(Fim)
         }
     }
 
