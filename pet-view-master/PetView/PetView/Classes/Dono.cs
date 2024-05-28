@@ -141,42 +141,9 @@ namespace PetView
                 return dtbl;
             }
         }
+        public void Update() { }
+        
 
-        public void Update()
-        {
-            int cod_usuario = CodigoDono;
-            Console.WriteLine($"Codigo dono: {CodigoDono}");
-
-            try
-            {
-                using (SqlConnection con = new SqlConnection(StringConexao.connectionString))
-                {
-                    con.Open();
-                    using (SqlCommand cmd = new SqlCommand("sp_dados_usuarios", con))
-                    {
-                        cmd.SelectCommand.CommandType = CommandType.StoredProcedure;
-                        cmd.SelectCommand.Parameters.Add("@cod_dono", SqlDbType.Int).Value = Convert.ToInt32(cod_usuario);
-
-                        int rowsAffected = command.ExecuteNonQuery();
-                        con.Close();
-                        if (rowsAffected > 0)
-                        {
-                            Console.WriteLine("Dados do Usuário encontrados com sucesso.");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Nenhum usuárioachado. Verifique o código do usuário.");
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Ocorreu um erro: " + ex.Message);
-            }
-
-
-        }
 
         public void Delete()
         {

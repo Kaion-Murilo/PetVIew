@@ -22,7 +22,7 @@ namespace PetView.Edit
         {
             Dono dono = new Dono();
             dono.CodigoDono = id;
-            dono.Update();
+            Edit.Update1(id);
             dono.CodigoDono = id;
             Console.WriteLine($"Codigo dono: {id}");
         }

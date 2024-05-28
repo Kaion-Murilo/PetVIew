@@ -109,6 +109,7 @@
     <Compile Include="Classes\Funcionario.cs" />
     <Compile Include="Classes\Consulta.cs" />
     <Compile Include="Classes\Exame.cs" />
+    <Compile Include="Edit\Edit.cs" />
     <Compile Include="Edit\F_EditDono.cs">
       <SubType>Form</SubType>
     </Compile>
