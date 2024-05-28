@@ -10,6 +10,9 @@ namespace PetView
 {
         public class StringConexao
         {
+        /// <summary>
+        /// Singleton (Inicio)
+        /// </summary>
             // Instância singleton privada e objeto de bloqueio para thread safety
             private static StringConexao _instance;
             private static readonly object _lock = new object();
@@ -41,5 +44,6 @@ namespace PetView
                 get { return _connectionString; }
                 set { _connectionString = value; }
             }
-        }
+        /// Singleton (Fim)
     }
+}
