@@ -82,133 +82,149 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Agenda.cs" />
-    <Compile Include="Classes\Animal.cs" />
-    <Compile Include="Cadastros\FormDono.cs">
+    <Compile Include="Controller\AnimalController.cs" />
+    <Compile Include="Controller\ConsultaController.cs" />
+    <Compile Include="Controller\ControllerDono.cs" />
+    <Compile Include="Controller\ControllerEndereco.cs" />
+    <Compile Include="Controller\ExameController.cs" />
+    <Compile Include="Controller\FuncionarioController.cs" />
+    <Compile Include="Controller\MedicoController.cs" />
+    <Compile Include="Controller\TratamentoController.cs" />
+    <Compile Include="Data\AnimalDAL.cs" />
+    <Compile Include="Data\ConsultaDAL.cs" />
+    <Compile Include="Data\EnderecoDAL.cs" />
+    <Compile Include="Data\ExameDAL.cs" />
+    <Compile Include="Data\DonoDAL.cs" />
+    <Compile Include="Data\FuncionarioDAL.cs" />
+    <Compile Include="Data\MedicoDAL.cs" />
+    <Compile Include="Data\TratamentoDAL.cs" />
+    <Compile Include="Data\Agenda.cs" />
+    <Compile Include="Model\Classes\Animal.cs" />
+    <Compile Include="Model\Classes\FactoryMethod\FacPessoa.cs" />
+    <Compile Include="View\Cadastros\FormDono.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Cadastros\FormDono.Designer.cs">
+    <Compile Include="View\Cadastros\FormDono.Designer.cs">
       <DependentUpon>FormDono.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cadastros\FormFuncionario.cs">
+    <Compile Include="View\Cadastros\FormFuncionario.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Cadastros\FormFuncionario.Designer.cs">
+    <Compile Include="View\Cadastros\FormFuncionario.Designer.cs">
       <DependentUpon>FormFuncionario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cadastros\FormMedico.cs">
+    <Compile Include="View\Cadastros\FormMedico.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Cadastros\FormMedico.Designer.cs">
+    <Compile Include="View\Cadastros\FormMedico.Designer.cs">
       <DependentUpon>FormMedico.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Dono.cs" />
-    <Compile Include="Classes\Endereco.cs" />
-    <Compile Include="Classes\ICadastro.cs" />
-    <Compile Include="Classes\Medico.cs" />
-    <Compile Include="Classes\Funcionario.cs" />
-    <Compile Include="Classes\Consulta.cs" />
-    <Compile Include="Classes\Exame.cs" />
-    <Compile Include="Edit\Edit.cs" />
-    <Compile Include="Edit\F_EditDono.cs">
+    <Compile Include="Model\Classes\Dono.cs" />
+    <Compile Include="Model\Classes\Endereco.cs" />
+    <Compile Include="Model\ICadastro.cs" />
+    <Compile Include="Model\Classes\Medico.cs" />
+    <Compile Include="Model\Classes\Funcionario.cs" />
+    <Compile Include="Model\Classes\Consulta.cs" />
+    <Compile Include="Model\Classes\Exame.cs" />
+    <Compile Include="View\Edit\F_EditDono.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Edit\F_EditDono.Designer.cs">
+    <Compile Include="View\Edit\F_EditDono.Designer.cs">
       <DependentUpon>F_EditDono.cs</DependentUpon>
     </Compile>
-    <Compile Include="Medico\FormExame.cs">
+    <Compile Include="View\Medico\FormExame.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Medico\FormExame.Designer.cs">
+    <Compile Include="View\Medico\FormExame.Designer.cs">
       <DependentUpon>FormExame.cs</DependentUpon>
     </Compile>
-    <Compile Include="Medico\FormTratamento.cs">
+    <Compile Include="View\Medico\FormTratamento.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Medico\FormTratamento.Designer.cs">
+    <Compile Include="View\Medico\FormTratamento.Designer.cs">
       <DependentUpon>FormTratamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Medico\FormConsulta.cs">
+    <Compile Include="View\Medico\FormConsulta.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Medico\FormConsulta.Designer.cs">
+    <Compile Include="View\Medico\FormConsulta.Designer.cs">
       <DependentUpon>FormConsulta.cs</DependentUpon>
     </Compile>
     <Compile Include="NullableObjs.cs" />
-    <Compile Include="Principais\FormAgenda.cs">
+    <Compile Include="View\Principais\FormAgenda.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Principais\FormAgenda.Designer.cs">
+    <Compile Include="View\Principais\FormAgenda.Designer.cs">
       <DependentUpon>FormAgenda.cs</DependentUpon>
     </Compile>
-    <Compile Include="Principais\Agendamento.cs">
+    <Compile Include="View\Principais\Agendamento.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Principais\Agendamento.Designer.cs">
+    <Compile Include="View\Principais\Agendamento.Designer.cs">
       <DependentUpon>Agendamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cadastros\FormAnimal.cs">
+    <Compile Include="View\Cadastros\FormAnimal.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Cadastros\FormAnimal.Designer.cs">
+    <Compile Include="View\Cadastros\FormAnimal.Designer.cs">
       <DependentUpon>FormAnimal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Estrutura.cs">
+    <Compile Include="View\Estrutura.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Estrutura.Designer.cs">
+    <Compile Include="View\Estrutura.Designer.cs">
       <DependentUpon>Estrutura.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormLogin.cs">
+    <Compile Include="View\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLogin.Designer.cs">
+    <Compile Include="View\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Principais\Registros.cs">
+    <Compile Include="View\Principais\Registros.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Principais\Registros.Designer.cs">
+    <Compile Include="View\Principais\Registros.Designer.cs">
       <DependentUpon>Registros.cs</DependentUpon>
     </Compile>
-    <Compile Include="StringConexao.cs" />
-    <Compile Include="Classes\Tratamento.cs" />
-    <EmbeddedResource Include="Cadastros\FormDono.resx">
+    <Compile Include="Data\StringConexao.cs" />
+    <Compile Include="Model\Classes\Tratamento.cs" />
+    <EmbeddedResource Include="View\Cadastros\FormDono.resx">
       <DependentUpon>FormDono.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Cadastros\FormFuncionario.resx">
+    <EmbeddedResource Include="View\Cadastros\FormFuncionario.resx">
       <DependentUpon>FormFuncionario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Cadastros\FormMedico.resx">
+    <EmbeddedResource Include="View\Cadastros\FormMedico.resx">
       <DependentUpon>FormMedico.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Edit\F_EditDono.resx">
+    <EmbeddedResource Include="View\Edit\F_EditDono.resx">
       <DependentUpon>F_EditDono.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Medico\FormExame.resx">
+    <EmbeddedResource Include="View\Medico\FormExame.resx">
       <DependentUpon>FormExame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Medico\FormTratamento.resx">
+    <EmbeddedResource Include="View\Medico\FormTratamento.resx">
       <DependentUpon>FormTratamento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Medico\FormConsulta.resx">
+    <EmbeddedResource Include="View\Medico\FormConsulta.resx">
       <DependentUpon>FormConsulta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Principais\FormAgenda.resx">
+    <EmbeddedResource Include="View\Principais\FormAgenda.resx">
       <DependentUpon>FormAgenda.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Principais\Agendamento.resx">
+    <EmbeddedResource Include="View\Principais\Agendamento.resx">
       <DependentUpon>Agendamento.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Cadastros\FormAnimal.resx">
+    <EmbeddedResource Include="View\Cadastros\FormAnimal.resx">
       <DependentUpon>FormAnimal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Estrutura.resx">
+    <EmbeddedResource Include="View\Estrutura.resx">
       <DependentUpon>Estrutura.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormLogin.resx">
+    <EmbeddedResource Include="View\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -221,7 +237,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Principais\Registros.resx">
+    <EmbeddedResource Include="View\Principais\Registros.resx">
       <DependentUpon>Registros.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -253,6 +269,7 @@
   <ItemGroup>
     <None Include="Resources\logo vet.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
