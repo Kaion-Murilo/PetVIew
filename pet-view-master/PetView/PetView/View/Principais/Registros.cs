@@ -24,8 +24,12 @@ namespace PetView
         {
             InitializeComponent();
             CarregaCbo();
+            RefreshDataGrid();
         }
-
+        public void Refresh1( string nome)
+        {
+            dgvTabela(nome);
+        }
         private void CarregaCbo()
         {
             List<string> tabelas = new List<string> { "Animal", "Dono", "Consulta", "Exame", "Funcionário", "Médico", "Tratamento" };
@@ -183,7 +187,6 @@ namespace PetView
             f_EditDono.ShowDialog();
 
         }
-
         private void dgvRegistros_SelectionChanged(object sender, EventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
@@ -198,8 +201,13 @@ namespace PetView
                     id = idSelecionado;
                     Console.WriteLine($"id: {idSelecionado}");
                 }
-
-
+            }
+        }
+        public void RefreshDataGrid()
+        {
+            if (cboTabela_item != null)
+            {
+                dgvTabela(cboTabela_item.ToLower());
             }
         }
     }

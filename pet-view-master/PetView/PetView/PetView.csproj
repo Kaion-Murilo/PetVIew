@@ -86,6 +86,7 @@
     <Compile Include="Controller\ConsultaController.cs" />
     <Compile Include="Controller\ControllerDono.cs" />
     <Compile Include="Controller\ControllerEndereco.cs" />
+    <Compile Include="Controller\ControllerGeral.cs" />
     <Compile Include="Controller\ExameController.cs" />
     <Compile Include="Controller\FuncionarioController.cs" />
     <Compile Include="Controller\MedicoController.cs" />

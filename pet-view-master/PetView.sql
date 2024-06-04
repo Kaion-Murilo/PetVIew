@@ -6,109 +6,115 @@ GO
 
 -- TABELAS
 
-create table tbEndereco(
-cep char(8) not null,
-numero int not null,
-rua varchar(50) not null,
-bairro varchar(50) not null,
-complemento varchar(20),
-cidade varchar(50) not null,
-uf char(2) not null,
-constraint PK_tbEndereco primary key clustered (cep, numero)
+CREATE TABLE tbEndereco (
+    cep CHAR(8) NOT NULL,
+    numero INT NOT NULL,
+    rua VARCHAR(50) NOT NULL,
+    bairro VARCHAR(50) NOT NULL,
+    complemento VARCHAR(20),
+    cidade VARCHAR(50) NOT NULL,
+    uf CHAR(2) NOT NULL,
+    CONSTRAINT PK_tbEndereco PRIMARY KEY CLUSTERED (cep, numero)
 );
 GO
 
-create table tbFuncionario(
-cod_funcionario int identity(1,1) constraint PK_tbFuncionario primary key,
-nome_func varchar(70) not null,
-cpf_func char(11) not null,
-rg_func char(9) not null,
-status_func varchar(8) not null constraint DF_tbFuncionario_status default 'Ativo', -- ativo ou demitido
-tel_func char(10),
-cel_func char(11) not null,
-email_func varchar(100),
-cargo_func varchar(30) not null,
-salario_func money not null,
-cep_func char(8) not null,
-numcasa_func int not null,
-constraint FK_tbFuncionario_tbEndereco foreign key(cep_func, numcasa_func) references tbEndereco(cep,numero),
-constraint CK_tbFuncionario_salario check(salario_func >= 0.00)
+-- Criar a tabela tbFuncionario
+CREATE TABLE tbFuncionario (
+    cod_funcionario INT IDENTITY(1,1) CONSTRAINT PK_tbFuncionario PRIMARY KEY,
+    nome_func VARCHAR(70) NOT NULL,
+    cpf_func CHAR(11) NOT NULL,
+    rg_func CHAR(9) NOT NULL,
+    status_func VARCHAR(8) NOT NULL CONSTRAINT DF_tbFuncionario_status DEFAULT 'Ativo', -- ativo ou demitido
+    tel_func CHAR(10),
+    cel_func CHAR(11) NOT NULL,
+    email_func VARCHAR(100),
+    cargo_func VARCHAR(30) NOT NULL,
+    salario_func MONEY NOT NULL,
+    cep_func CHAR(8) NOT NULL,
+    numcasa_func INT NOT NULL,
+    CONSTRAINT FK_tbFuncionario_tbEndereco FOREIGN KEY(cep_func, numcasa_func) REFERENCES tbEndereco(cep,numero),
+    CONSTRAINT CK_tbFuncionario_salario CHECK (salario_func >= 0.00)
 );
 GO
 
-create table tbMedico(
-cod_medico int identity(1,1) constraint PK_tbMedico primary key,
-crmv int not null,
-nome_med varchar(70) not null,
-funcao_med varchar(30) not null,
-cpf_med char(11) not null,
-rg_med char(9) not null,
-cel_med char(11) not null,
-tel_med char(10),
-email_med varchar(100) not null,
-salario_med money not null,
-status_med varchar(8) not null constraint DF_tbMedico_status default 'Ativo', -- ativo ou demitido
-cep_med char(8) not null,
-numcasa_med int not null,
-constraint FK_tbMedico_tbEndereco foreign key(cep_med, numcasa_med) references tbEndereco(cep,numero),
-constraint CK_tbMedico_salario check(salario_med >= 0.00)
+-- Criar a tabela tbMedico
+CREATE TABLE tbMedico (
+    cod_medico INT IDENTITY(1,1) CONSTRAINT PK_tbMedico PRIMARY KEY,
+    crmv INT NOT NULL,
+    nome_med VARCHAR(70) NOT NULL,
+    funcao_med VARCHAR(30) NOT NULL,
+    cpf_med CHAR(11) NOT NULL,
+    rg_med CHAR(9) NOT NULL,
+    cel_med CHAR(11) NOT NULL,
+    tel_med CHAR(10),
+    email_med VARCHAR(100) NOT NULL,
+    salario_med MONEY NOT NULL,
+    status_med VARCHAR(8) NOT NULL CONSTRAINT DF_tbMedico_status DEFAULT 'Ativo', -- ativo ou demitido
+    cep_med CHAR(8) NOT NULL,
+    numcasa_med INT NOT NULL,
+    CONSTRAINT FK_tbMedico_tbEndereco FOREIGN KEY(cep_med, numcasa_med) REFERENCES tbEndereco(cep,numero),
+    CONSTRAINT CK_tbMedico_salario CHECK (salario_med >= 0.00)
 );
 GO
 
-create table tbUsuario (
-cod_usuario int identity(1,1) constraint PK_tbUsuario primary key,
-nome_usuario varchar(25) not null,
-ativacao_usuario bit not null constraint DF_tbUsuario_ativo default 0,
-data_cadastro datetime not null constraint DF_tbUsuario_data default getdate(),
-senha_usuario varchar(20) not null,
-cod_funcionario int,
-cod_medico int,
-constraint FK_tbUsuario_tbFuncionario foreign key(cod_funcionario) references tbFuncionario(cod_funcionario),
-constraint FK_tbUsuario_tbMedico foreign key(cod_medico) references tbMedico(cod_medico)
+-- Criar a tabela tbUsuario
+CREATE TABLE tbUsuario (
+    cod_usuario INT IDENTITY(1,1) CONSTRAINT PK_tbUsuario PRIMARY KEY,
+    nome_usuario VARCHAR(25) NOT NULL,
+    ativacao_usuario BIT NOT NULL CONSTRAINT DF_tbUsuario_ativo DEFAULT 0,
+    data_cadastro DATETIME NOT NULL CONSTRAINT DF_tbUsuario_data DEFAULT GETDATE(),
+    senha_usuario VARCHAR(20) NOT NULL,
+    cod_funcionario INT,
+    cod_medico INT,
+    CONSTRAINT FK_tbUsuario_tbFuncionario FOREIGN KEY(cod_funcionario) REFERENCES tbFuncionario(cod_funcionario),
+    CONSTRAINT FK_tbUsuario_tbMedico FOREIGN KEY(cod_medico) REFERENCES tbMedico(cod_medico)
 );
 GO
 
-create table tbDono(
-cod_dono int identity(1,1) constraint PK_tbDono primary key,
-nome_dono varchar(70) not null,
-cpf_dono char(11) not null,
-rg_dono char(9) not null,
-cel_dono char(11) not null,
-tel_dono char(10),
-email_dono varchar(100),
-cep_dono char(8) not null,
-numcasa_dono int not null,
-constraint FK_tbDono_tbEndereco foreign key(cep_dono, numcasa_dono) references tbEndereco(cep,numero)
+-- Criar a tabela tbDono
+CREATE TABLE tbDono (
+    cod_dono INT IDENTITY(1,1) CONSTRAINT PK_tbDono PRIMARY KEY,
+    nome_dono VARCHAR(70) NOT NULL,
+    cpf_dono CHAR(11) NOT NULL,
+    rg_dono CHAR(9) NOT NULL,
+    cel_dono CHAR(11) NOT NULL,
+    tel_dono CHAR(10),
+    email_dono VARCHAR(100),
+    cep_dono CHAR(8) NOT NULL,
+    numcasa_dono INT NOT NULL,
+    CONSTRAINT FK_tbDono_tbEndereco FOREIGN KEY(cep_dono, numcasa_dono) REFERENCES tbEndereco(cep,numero)
 );
 GO
 
-create table tbAnimal(
-cod_animal int identity(1,1) constraint PK_tbAnimal primary key,
-rga int,
-cod_dono int not null,
-nome_animal varchar(30) not null,
-idade int not null,
-tipo_idade char(5) not null,
-raca_animal varchar(30) not null,
-especie varchar(30) not null,
-descricao varchar(100) not null,
-constraint FK_tbAnimal_tbDono foreign key(cod_dono) references tbDono(cod_dono)
+-- Criar a tabela tbAnimal
+CREATE TABLE tbAnimal (
+    cod_animal INT IDENTITY(1,1) CONSTRAINT PK_tbAnimal PRIMARY KEY,
+    rga INT,
+    cod_dono INT NOT NULL,
+    nome_animal VARCHAR(30) NOT NULL,
+    idade INT NOT NULL,
+    tipo_idade CHAR(5) NOT NULL,
+    raca_animal VARCHAR(30) NOT NULL,
+    especie VARCHAR(30) NOT NULL,
+    descricao VARCHAR(100) NOT NULL,
+    CONSTRAINT FK_tbAnimal_tbDono FOREIGN KEY(cod_dono) REFERENCES tbDono(cod_dono)
 );
 GO
 
-create table tbConsulta(
-cod_consulta int identity(1,1) constraint PK_tbConsulta primary key,
-cod_animal int not null,
-cod_medico int not null,
-sintomas varchar(1000),
-diagnostico varchar(1000),
-custo_consulta money not null,
-tipo_consulta varchar(30) not null,
-data_consulta datetime not null,
-observacao_consulta varchar(300),
-status_consulta bit not null constraint DF_tbConsulta_status default 0,
-constraint FK_tbConsulta_tbAnimal foreign key(cod_animal) references tbAnimal(cod_animal),
-constraint FK_tbConsulta_tbMedico foreign key(cod_medico) references tbMedico(cod_medico)
+-- Criar a tabela tbConsulta
+CREATE TABLE tbConsulta (
+    cod_consulta INT IDENTITY(1,1) CONSTRAINT PK_tbConsulta PRIMARY KEY,
+    cod_animal INT NOT NULL,
+    cod_medico INT NOT NULL,
+    sintomas VARCHAR(1000),
+    diagnostico VARCHAR(1000),
+    custo_consulta MONEY NOT NULL,
+    tipo_consulta VARCHAR(30) NOT NULL,
+    data_consulta DATETIME NOT NULL,
+    observacao_consulta VARCHAR(300),
+    status_consulta BIT NOT NULL CONSTRAINT DF_tbConsulta_status DEFAULT 0,
+    CONSTRAINT FK_tbConsulta_tbAnimal FOREIGN KEY(cod_animal) REFERENCES tbAnimal(cod_animal),
+    CONSTRAINT FK_tbConsulta_tbMedico FOREIGN KEY(cod_medico) REFERENCES tbMedico(cod_medico)
 );
 GO
 
@@ -492,7 +498,13 @@ as
 	end
  
 GO
-
+ALTER proc [dbo].[sp_dados_dono](
+@cod_dono int
+)as
+begin
+    SELECT * FROM tbDono where cod_dono = @cod_dono;
+end
+GO
 create proc sp_update_dono(
 @cod_dono int,
 @cep char(8),

@@ -31,38 +31,16 @@ namespace PetView.Edit
             DataTable dt = new DataTable();
             
             dt = ControllerDono.Get(id);
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                // Itera sobre as linhas do DataTable
-                foreach (DataRow row in dt.Rows)
-                {
-                    // Itera sobre as colunas do DataTable
-                    foreach (DataColumn col in dt.Columns)
-                    {
-                        // Imprime o nome da coluna e o valor da célula
-                        Console.WriteLine($"{col.ColumnName}: {row[col]}");
-                    }
-                    Console.WriteLine(); // Adiciona uma linha em branco entre as linhas
-                }
-            }
-            else
-            {
-                Console.WriteLine("Nenhum dado encontrado no DataTable.");
-            }
-            Console.WriteLine($"Codigo dono View: {id}");
             
             txtNomeDono.Text = dt.Rows[0].Field<string>("nome_dono").ToString();
             txtCPF.Text = dt.Rows[0].Field<string>("cpf_dono").ToString();
             txtRGDono.Text = dt.Rows[0].Field<string>("rg_dono").ToString();
             txtCelular.Text = dt.Rows[0].Field<string>("cel_dono").ToString();
             txtTelefone.Text = dt.Rows[0].Field<string>("tel_dono").ToString();
-            //txtEndereco.Text = dt.Rows[0].Field<string>("").ToString();
+         
             txtEmailDono.Text = dt.Rows[0].Field<string>("email_dono").ToString();
             nupNumero.Text = dt.Rows[0].Field<Int32>("numcasa_dono").ToString();
-            //txtComplemento.Text = dt.Rows[0].Field<string>("complemento").ToString();
-            //txtBairro.Text = dt.Rows[0].Field<string>("bairro").ToString();
-            //txtCidade.Text = dt.Rows[0].Field<string>("cidade").ToString();
-            //cboUF.Text = dt.Rows[0].Field<string>("uf").ToString();
+
             txtCEP.Text = dt.Rows[0].Field<string>("cep_dono").ToString();
             // Obtendo os dados do endereço
             string cep = txtCEP.Text;
@@ -101,7 +79,7 @@ namespace PetView.Edit
             string emailDono = txtEmailDono.Text;
             string cep = txtCEP.Text;
             int numero = int.Parse(nupNumero.Text);
-
+            
             // Obtendo os dados do endereço
             DataTable dte = ControllerEndereco.GetEndereco(cep, numero);
 
@@ -128,12 +106,24 @@ namespace PetView.Edit
                 celDono: celDono,
                 emailDono: emailDono
             );
-            
+            Close();
+
+
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            ControllerDono.Delete(id);
+            DialogResult res = MessageBox.Show("Confirmar Exclusao? ", "Excluir?", MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes)
+            {
+                ControllerDono.Delete(id);
+                Refresh();
+                Registros registros = new Registros();
+                registros.Refresh1("dono");
+
+                Close();
+
+            }
         }
     }
 }

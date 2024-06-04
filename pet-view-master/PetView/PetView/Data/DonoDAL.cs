@@ -43,8 +43,6 @@ namespace PetView.Data
 
             try
             {
-
-
                 MessageBox.Show("Dono registrado com sucesso!", "Cadastro finalizado.", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (SqlException e)

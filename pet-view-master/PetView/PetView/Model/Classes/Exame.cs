@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using static PetView.Models.ConsultaModel;
-
+using PetView.Models;
 namespace PetView.Models
 {
     public class Exame

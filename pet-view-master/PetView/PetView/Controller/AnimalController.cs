@@ -6,15 +6,10 @@ namespace PetView.Controllers
 {
     public class AnimalController
     {
-        private readonly AnimalDAL _animalDal;
-
-        public AnimalController()
-        {
-            _animalDal = new AnimalDAL();
-        }
 
         public static void Insert(Animal animal)
         {
+            
             AnimalDAL.Insert(animal);
         }
 
@@ -30,7 +25,7 @@ namespace PetView.Controllers
 
         public void DeleteAnimal(int codigoAnimal)
         {
-            _animalDal.Delete(codigoAnimal);
+         
         }
     }
 }

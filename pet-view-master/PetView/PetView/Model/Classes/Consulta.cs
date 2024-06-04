@@ -2,6 +2,8 @@
 using System.Data;
 using PetView.DAL;
 using PetView.Data;
+using PetView.Models;
+
 
 namespace PetView.Models
 {
@@ -9,6 +11,7 @@ namespace PetView.Models
     {
         public class Consulta
         {
+
             public int CodConsulta { get; set; }
             public Medico medico { get; set; }
             public Animal animal { get; set; }
@@ -43,32 +46,6 @@ namespace PetView.Models
                 this.Sintomas = sintomas;
                 this.Diagnostico = diagnostico;
                 this.Observacao = observacao;
-            }
-            private ConsultaDAL _consultaDAL;
-
-            public void ConsultaModel()
-            {
-                _consultaDAL = new ConsultaDAL();
-            }
-
-            public DataTable Select(String type, String value)
-            {
-                return AnimalDAL.Select(type, value);
-            }
-
-            public void Insert(Consulta consulta)
-            {
-                consulta.Insert(consulta);
-            }
-
-            public void Update(Consulta consulta)
-            {
-                consulta.Update(consulta);
-            }
-
-            public void Delete(Consulta consulta)
-            {
-                consulta.Delete(consulta);
             }
         }
     }
