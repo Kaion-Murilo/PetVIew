@@ -81,16 +81,15 @@ namespace PetView.Edit
             int numero = int.Parse(nupNumero.Text);
             
             // Obtendo os dados do endereço
-            DataTable dte = ControllerEndereco.GetEndereco(cep, numero);
 
-            string rua = dte.Rows.Count > 0 ? dte.Rows[0]["rua"].ToString() : string.Empty;
-            string bairro = dte.Rows.Count > 0 ? dte.Rows[0]["bairro"].ToString() : string.Empty;
-            string complemento = dte.Rows.Count > 0 ? dte.Rows[0]["complemento"].ToString() : string.Empty;
-            string cidade = dte.Rows.Count > 0 ? dte.Rows[0]["cidade"].ToString() : string.Empty;
-            string uf = dte.Rows.Count > 0 ? dte.Rows[0]["uf"].ToString() : string.Empty;
+            string rua = txtEndereco.Text;
+            string bairro = txtBairro.Text;
+            string complemento = txtComplemento.Text;
+            string cidade = txtCidade.Text;
+            string uf = cboUF.Text;
+           
 
-            
-           ControllerDono.UpdateDono(
+            ControllerDono.UpdateDono(
                 codDono: id,
                 cep: cep,
                 numero: numero,

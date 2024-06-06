@@ -133,6 +133,18 @@
     <Compile Include="View\Edit\F_EditDono.Designer.cs">
       <DependentUpon>F_EditDono.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Edit\F_EditFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Edit\F_EditFuncionario.Designer.cs">
+      <DependentUpon>F_EditFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Edit\F_EditMedico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Edit\F_EditMedico.Designer.cs">
+      <DependentUpon>F_EditMedico.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Medico\FormExame.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -203,6 +215,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Edit\F_EditDono.resx">
       <DependentUpon>F_EditDono.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Edit\F_EditFuncionario.resx">
+      <DependentUpon>F_EditFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Edit\F_EditMedico.resx">
+      <DependentUpon>F_EditMedico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Medico\FormExame.resx">
       <DependentUpon>FormExame.cs</DependentUpon>

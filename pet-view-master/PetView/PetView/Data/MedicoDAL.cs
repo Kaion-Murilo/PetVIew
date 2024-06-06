@@ -55,15 +55,15 @@ namespace PetView.Data
             cmd.Parameters.Add("@salario_med", SqlDbType.Money).Value = medico.SalarioMedico;
             con.Open();
             cmd.ExecuteNonQuery();
-          
+
 
             try
             {
-                
-               
-                
-                    MessageBox.Show("Médico registrado com sucesso!", "Cadastro finalizado.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
+
+
+                MessageBox.Show("Médico registrado com sucesso!", "Cadastro finalizado.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             catch (SqlException e)
             {
@@ -77,5 +77,144 @@ namespace PetView.Data
                 }
             }
         }
+        public static DataTable get(int id)
+
+        {
+            Console.WriteLine("id="+id);
+            int cod_usuario = id;
+
+            DataTable dataTable = new DataTable();
+            string sql = "Select * FROM tbMedico where cod_medico= @id";
+
+            using (SqlConnection connection = new SqlConnection(StringConexao.connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exception (e.g., log the error)
+                        Console.WriteLine("An error occurred: " + ex.Message);
+                    }
+                }
+            }
+            foreach (DataRow row in  dataTable.Rows)
+            {
+                foreach (DataColumn col in dataTable.Columns)
+                {
+                    Console.WriteLine($"{col.ColumnName}: {row[col]}");
+                }
+                Console.WriteLine(); // Adiciona uma linha em branco entre cada linha de dados
+            }
+
+
+            return dataTable;
+
+
+        }
+        public static void UpdateMedico(int codMedico, string nomeMedico, string emailMedico,
+            string rgMedico, string cpfMedico, int crmv, string funcaoMedico, string celularMedico,
+            string telefoneMedico, string enderecoMedico, string bairroMedico, string cidadeMedico,
+            string ufMedico, string cepMedico, 
+            int numcasaMedico, double salarioMedico, string complementoMedicos)
+        {
+            string statusMedico = "Ativo";
+            string connectionString = StringConexao.connectionString;
+
+            string sql = @"
+        UPDATE tbMedico 
+        SET 
+            crmv = @crmv,
+            nome_med = @nome_med,
+            funcao_med = @funcao_med,
+            cpf_med = @cpf_med,
+            rg_med = @rg_med,
+            cel_med = @cel_med,
+            tel_med = @tel_med,
+            email_med = @email_med,
+            salario_med = @salario_med,
+            status_med = @status_med,
+            cep_med = @cep_med,
+            numcasa_med = @numcasa_med
+        WHERE cod_medico = @cod_medico;
+    ";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@cod_medico", codMedico);
+                    command.Parameters.AddWithValue("@crmv", crmv);
+                    command.Parameters.AddWithValue("@nome_med", nomeMedico);
+                    command.Parameters.AddWithValue("@funcao_med", funcaoMedico);
+                    command.Parameters.AddWithValue("@cpf_med", cpfMedico);
+                    command.Parameters.AddWithValue("@rg_med", rgMedico);
+                    command.Parameters.AddWithValue("@cel_med", celularMedico);
+                    command.Parameters.AddWithValue("@tel_med", telefoneMedico);
+                    command.Parameters.AddWithValue("@email_med", emailMedico);
+                    command.Parameters.AddWithValue("@salario_med", salarioMedico);
+                    command.Parameters.AddWithValue("@status_med", statusMedico); // Adicionando o parâmetro faltante
+                    command.Parameters.AddWithValue("@cep_med", cepMedico);
+                    command.Parameters.AddWithValue("@numcasa_med", numcasaMedico);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        Console.WriteLine("Dados do médico atualizados com sucesso.");
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exception (e.g., log the error)
+                        Console.WriteLine("An error occurred: " + ex.Message);
+                    }
+                }
+            }
+        }
+        public static void Delete(int id)
+        {
+            int cod_usuario = id;
+
+
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(StringConexao.connectionString))
+            {
+                string sql = "DElETE  From tbMedico WHERE cod_medico = " + id;
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exception (e.g., log the error)
+                        Console.WriteLine("An error occurred: " + ex.Message);
+                    }
+                }
+            }
+        }
+    
+
+
     }
+
 }

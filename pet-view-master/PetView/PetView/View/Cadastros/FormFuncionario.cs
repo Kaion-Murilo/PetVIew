@@ -50,7 +50,12 @@ namespace PetView
             {
                 try
                 {
-                    var funcionario = new Funcionario(txtNomeFunc.Text, txtCPF.Text, txtRGFunc.Text, txtCelular.Text, txtTelefone.Text, txtEmailFunc.Text, txtCargoFunc.Text, Convert.ToDouble(nupSalario.Text), txtCEP.Text, txtBairro.Text, txtCidade.Text, txtComplemento.Text, Convert.ToInt16(nupNumero.Text), txtEndereco.Text, cboUF.Text);
+                    var funcionario = new Funcionario(txtNomeFunc.Text,
+                        txtCPF.Text, txtRGFunc.Text, txtCelular.Text, 
+                        txtTelefone.Text, txtEmailFunc.Text,
+                        txtCargoFunc.Text, 
+                        Convert.ToDouble(nupSalario.Text), txtCEP.Text, txtBairro.Text, txtCidade.Text, txtComplemento.Text, 
+                        Convert.ToInt16(nupNumero.Text), txtEndereco.Text, cboUF.Text);
                     FuncionarioController.Insert(funcionario);
                 }
                 catch (Exception ex)

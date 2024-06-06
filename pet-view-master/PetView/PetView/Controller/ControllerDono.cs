@@ -26,13 +26,28 @@ namespace PetView.Controller
             return dt;
         }
         public static void UpdateDono(
-    int codDono, string cep, int numero, string rua, string bairro, string complemento,
-    string cidade, string uf, string nomeDono, string cpfDono, string rgDono,
+    int codDono, string cep, int numero, 
+    string rua, string bairro, string complemento,
+    string cidade, string uf, 
+    string nomeDono, string cpfDono, string rgDono,
     string telDono, string celDono, string emailDono)
 
         {
-            Console.WriteLine($"Entrou em Controller");
 
-            DonoDAL.Update(codDono, cep, numero, rua, bairro, complemento, cidade, uf, nomeDono, cpfDono, rgDono, telDono, celDono, emailDono); }
+            Console.WriteLine($"Entrou em Controller");
+            Console.WriteLine("Valores recebidos para atualização do endereço:");
+            Console.WriteLine($"CEP: {cep}");
+            Console.WriteLine($"Número: {numero}");
+            Console.WriteLine($"Rua: {rua}");
+            Console.WriteLine($"Bairro: {bairro}");
+            Console.WriteLine($"Complemento: {complemento}");
+            Console.WriteLine($"Cidade: {cidade}");
+            Console.WriteLine($"UF: {uf}");
+            Console.WriteLine("----------------------------");
+            EnderecoDAL.Update(cep, numero, rua, bairro, complemento, cidade, uf);
+            DonoDAL.Update(
+    codDono, cep, numero, rua, bairro, complemento, cidade, uf,
+    nomeDono, cpfDono, rgDono, telDono, celDono, emailDono);
+        }
     }
 }

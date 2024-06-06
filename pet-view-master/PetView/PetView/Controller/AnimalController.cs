@@ -17,6 +17,10 @@ namespace PetView.Controllers
         {
             return AnimalDAL.Select(type, value);
         }
+        public static DataTable Get(int id)
+        {
+            return AnimalDAL.Get(id);
+        }
 
         public void UpdateAnimal(Animal animal)
         {

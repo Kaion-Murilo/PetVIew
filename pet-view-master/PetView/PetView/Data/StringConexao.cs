@@ -19,7 +19,7 @@ namespace PetView
             // Construtor privado para impedir a instanciação externa
             private StringConexao() { }
             // Campo de instância para a string de conexão
-            private static String _connectionString = @"Data Source=NOTE1;Initial Catalog=dbPetView;User ID=sa;Password=123456789;Encrypt=False";
+            private static String _connectionString = @"Data Source=(local);Initial Catalog=dbPetView;Integrated Security=True;Encrypt=False";
             // Propriedade estática para acessar a única instância da classe
             public static StringConexao Instance
             {

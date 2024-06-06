@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using PetView.Models;
 using PetView.Controllers;
 using PetView.Models;
+using System.Deployment.Internal;
 
 namespace PetView
 {
@@ -20,6 +21,7 @@ namespace PetView
         {
             InitializeComponent();
             CarregarDono();
+           
         }
 
         private void CarregarDono()
@@ -50,7 +52,7 @@ namespace PetView
                 con.Close();
             }
         }
-
+        
         string tempo;
         private void btnCadastrar_Click(object sender, EventArgs e)
         {

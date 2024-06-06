@@ -20,23 +20,22 @@ namespace PetView.Models
         {
             dono = new Dono();
             RGA = rga;
-            Console.WriteLine("----------------------------");
-            Console.WriteLine(rga);
+
             NomeAnimal = nomeAnimal;
-            Console.WriteLine(nomeAnimal);
+            
             IdadeAnimal = idadeAnimal;
-            Console.WriteLine(idadeAnimal);
+           
             Tempo = tempo;
-            Console.WriteLine(tempo);
+            
             Especie = especie;
-            Console.WriteLine(especie);
+            
             Raca = raca;
-            Console.WriteLine(raca);
+           
             Descricao = descricao;
-            Console.WriteLine(descricao);
+  
             dono.CodigoDono = codDono;
-            Console.WriteLine(codDono);
-            Console.WriteLine("----------------------------");
+           
+       
         }
     }
 }

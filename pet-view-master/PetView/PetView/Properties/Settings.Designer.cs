@@ -26,8 +26,8 @@ namespace PetView.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=NOTE1;Initial Catalog=dbPetView;User ID=sa;Password=123456789;Encrypt" +
-            "=False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(local);Initial Catalog=dbPetView;Integrated Security=True;Encrypt=Fa" +
+            "lse")]
         public string Configuração {
             get {
                 return ((string)(this["Configuração"]));

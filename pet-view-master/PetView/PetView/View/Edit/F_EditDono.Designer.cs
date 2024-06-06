@@ -31,7 +31,6 @@
             this.flpBotoes = new System.Windows.Forms.FlowLayoutPanel();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
-            this.btnLimpar = new System.Windows.Forms.Button();
             this.tlpCadastroDono = new System.Windows.Forms.TableLayoutPanel();
             this.txtCelular = new System.Windows.Forms.MaskedTextBox();
             this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
@@ -68,7 +67,6 @@
             // 
             this.flpBotoes.Controls.Add(this.btnEditar);
             this.flpBotoes.Controls.Add(this.btnExcluir);
-            this.flpBotoes.Controls.Add(this.btnLimpar);
             this.flpBotoes.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flpBotoes.Location = new System.Drawing.Point(0, 504);
             this.flpBotoes.Margin = new System.Windows.Forms.Padding(4);
@@ -102,18 +100,6 @@
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
-            // 
-            // btnLimpar
-            // 
-            this.btnLimpar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnLimpar.Font = new System.Drawing.Font("Calibri", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpar.Location = new System.Drawing.Point(607, 12);
-            this.btnLimpar.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(233, 62);
-            this.btnLimpar.TabIndex = 14;
-            this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.UseVisualStyleBackColor = true;
             // 
             // tlpCadastroDono
             // 
@@ -517,7 +503,6 @@
         private System.Windows.Forms.FlowLayoutPanel flpBotoes;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnExcluir;
-        private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.TableLayoutPanel tlpCadastroDono;
         private System.Windows.Forms.MaskedTextBox txtCelular;
         private System.Windows.Forms.MaskedTextBox txtTelefone;

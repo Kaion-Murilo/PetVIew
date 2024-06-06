@@ -5,6 +5,7 @@ using System.Data.SqlTypes;
 using System.Windows.Forms;
 using PetView.Models;
 
+
 namespace PetView.Data
 {
     public class ExameDAL
@@ -17,7 +18,7 @@ namespace PetView.Data
 
                 cmd.Parameters.Add("@cod_animal", SqlDbType.Int).Value = exame.animal.CodigoAnimal;
                 cmd.Parameters.Add("@cod_medico", SqlDbType.Int).Value = exame.medico.CodigoMedico;
-                cmd.Parameters.Add("@cod_consulta", SqlDbType.Int).Value = exame.consulta;
+                cmd.Parameters.Add("@cod_consulta", SqlDbType.Int).Value = exame.Consulta.CodConsulta;
                 cmd.Parameters.Add("@tipo_exame", SqlDbType.VarChar).Value = exame.TipoExame;
                 cmd.Parameters.Add("@observacao_exame", SqlDbType.VarChar).Value = string.IsNullOrWhiteSpace(exame.Observacao) ? SqlString.Null : (object)exame.Observacao;
                 cmd.Parameters.Add("@custo_exame", SqlDbType.Money).Value = exame.Custo;

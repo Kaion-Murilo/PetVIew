@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PetView.Models;
+using System.Reflection.Emit;
+using System.Security.Cryptography;
+using System.Deployment.Internal;
 
 namespace PetView.Data
 {
@@ -116,11 +119,143 @@ namespace PetView.Data
                 }
             }
         }
+        public static DataTable DadosFunc(int id)
+        {
 
-        public static void Update(Funcionario funcionario) { }
-      
+            DataTable dataTable = new DataTable();
+            string sql = "SELECT * FROM tbFuncionario WHERE cod_funcionario = @id";
 
-    }
-}
+            using (SqlConnection connection = new SqlConnection(StringConexao.connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exception (e.g., log the error)
+                        Console.WriteLine("An error occurred: " + ex.Message);
+                    }
+                }
+            }
+
+            return dataTable;
+        }
+        public static void Update(
+    int codFuncionario, string rua, string cep, int numero,
+    string bairro, string complemento,
+    string cidade, string uf, string nomeFunc,
+    string cpfFunc, string rgFunc,
+    string telFunc, string celFunc,
+    string emailFunc, string cargoFunc, double salarioFunc)
+        {
+            string connectionString = StringConexao.connectionString;
+           
+            string sql = @"
+        -- Verifica se o endereço existe, se não existir, insere-o
+        IF NOT EXISTS (SELECT 1 FROM tbEndereco WHERE cep = @cep AND numero = @numero)
+        BEGIN
+            INSERT INTO tbEndereco (cep, numero, rua, bairro, complemento, cidade, uf)
+            VALUES (@cep, @numero, @rua, @bairro, @complemento, @cidade, @uf);
+        END
+
+        -- Atualiza os dados na tabela tbFuncionario
+        UPDATE tbFuncionario 
+        SET nome_func = @nome_func, cpf_func = @cpf_func, 
+            rg_func = @rg_func, tel_func = @tel_func, 
+            cel_func = @cel_func, email_func = @email_func, 
+            cargo_func = @cargo_func, salario_func = @salario_func,
+            cep_func = @cep, numcasa_func = @numero 
+        WHERE cod_funcionario = @cod_funcionario;
+    ";
+          
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.CommandType = CommandType.Text;
+
+                    // Adiciona parâmetros para tbEndereco
+                    command.Parameters.AddWithValue("@cep", cep);
+                    command.Parameters.AddWithValue("@numero", numero);
+                    command.Parameters.AddWithValue("@rua", rua);
+                    command.Parameters.AddWithValue("@bairro", bairro);
+                    command.Parameters.AddWithValue("@complemento", complemento);
+                    command.Parameters.AddWithValue("@cidade", cidade);
+                    command.Parameters.AddWithValue("@uf", uf);
+
+                    // Adiciona parâmetros para tbFuncionario
+                    command.Parameters.AddWithValue("@cod_funcionario", codFuncionario);
+                    command.Parameters.AddWithValue("@nome_func", nomeFunc);
+                    command.Parameters.AddWithValue("@cpf_func", cpfFunc);
+                    command.Parameters.AddWithValue("@rg_func", rgFunc);
+                    command.Parameters.AddWithValue("@tel_func", telFunc);
+                    command.Parameters.AddWithValue("@cel_func", celFunc);
+                    command.Parameters.AddWithValue("@email_func", emailFunc);
+                    command.Parameters.AddWithValue("@cargo_func", cargoFunc);
+                    command.Parameters.AddWithValue("@salario_func", salarioFunc);
+
+                    try
+                    {
+                        connection.Open();
+                        // Execute a transação
+                        command.ExecuteNonQuery();
+                        Console.WriteLine("Dados do funcionário atualizados com sucesso.");
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exception (e.g., log the error)
+                        Console.WriteLine("An error occurred: " + ex.Message);
+                    }
+                }
+            }
+        }
+        public static void Delete(int id)
+        {
+            int cod_usuario = id;
+            
+
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(StringConexao.connectionString))
+            {
+                string sql = "DELETE FROM tbFuncionario WHERE cod_funcionario = " + id;
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(dataTable);
+                        }
+                      
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exception (e.g., log the error)
+                        Console.WriteLine("An error occurred: " + ex.Message);
+                    }
+                }
+            }
+        }
+
+
+
+
+
+    }    }
 
 

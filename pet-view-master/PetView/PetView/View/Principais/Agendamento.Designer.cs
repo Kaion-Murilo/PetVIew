@@ -246,7 +246,7 @@
             this.dtpData.Name = "dtpData";
             this.dtpData.Size = new System.Drawing.Size(420, 34);
             this.dtpData.TabIndex = 5;
-            this.dtpData.Value = new System.DateTime(2019, 5, 2, 0, 0, 0, 0);
+            this.dtpData.Value = new System.DateTime(2024, 6, 24, 23, 59, 59, 0);
             // 
             // dtpHora
             // 

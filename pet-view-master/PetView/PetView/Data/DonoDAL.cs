@@ -94,11 +94,6 @@ namespace PetView.Data
 
         }
 
-        public void Update(Dono dono)
-        {
-            // Implementar a lógica de atualização de dados
-        }
-
         public static void Delete(int id)
         {
             int cod_usuario = id;
@@ -107,11 +102,9 @@ namespace PetView.Data
             DataTable dataTable = new DataTable();
 
             using (SqlConnection connection = new SqlConnection(StringConexao.connectionString))
-            {
-                using (SqlCommand command = new SqlCommand("sp_delete_dono", connection))
+            {string sql = "DELETE FROM tbDono WHERE cod_dono = "+id;
+                using (SqlCommand command = new SqlCommand(sql, connection))
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@cod_dono", cod_usuario);
 
                     try
                     {
@@ -135,16 +128,15 @@ namespace PetView.Data
         public static DataTable GetDadosDono(int id)
         {
             int cod_usuario = id;
-            Console.WriteLine($"Codigo dono GET: {id}");
 
             DataTable dataTable = new DataTable();
+            string sql = "SELECT * FROM tbDono WHERE cod_dono = @id";
 
             using (SqlConnection connection = new SqlConnection(StringConexao.connectionString))
             {
-                using (SqlCommand command = new SqlCommand("sp_dados_dono", connection))
+                using (SqlCommand command = new SqlCommand(sql, connection))
                 {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@cod_dono", cod_usuario);
+                    command.Parameters.AddWithValue("@id", id);
 
                     try
                     {
@@ -154,7 +146,6 @@ namespace PetView.Data
                         {
                             adapter.Fill(dataTable);
                         }
-                        Console.WriteLine("Deu certo o GET ma ta estrano");
                     }
                     catch (Exception ex)
                     {
@@ -163,25 +154,42 @@ namespace PetView.Data
                     }
                 }
             }
-
+           
             return dataTable;
 
 
         }
         public static void Update(
-                int codDono, string cep, int numero, string rua, string bairro, string complemento,
-                string cidade, string uf, string nomeDono, string cpfDono, string rgDono,
-                string telDono, string celDono, string emailDono)
+     int codDono, string cep, int numero, string rua, string bairro, string complemento,
+     string cidade, string uf, string nomeDono, string cpfDono, string rgDono,
+     string telDono, string celDono, string emailDono)
         {
-            Console.WriteLine($"Entrou em DAL");
-            using (SqlConnection connection = new SqlConnection(StringConexao.connectionString))
-            {
-                using (SqlCommand command = new SqlCommand("sp_update_dono", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
+            string connectionString = StringConexao.connectionString;
 
-                    // Add parameters
-                    command.Parameters.AddWithValue("@cod_dono", codDono);
+            string sql1 = @"
+        -- Verifica se o endereço existe, se não existir, insere-o
+        IF NOT EXISTS (SELECT 1 FROM tbEndereco WHERE cep = @cep AND numero = @numero)
+        BEGIN
+            INSERT INTO tbEndereco (cep, numero, rua, bairro, complemento, cidade, uf)
+            VALUES (@cep, @numero, @rua, @bairro, @complemento, @cidade, @uf);
+        END
+        
+        -- Atualiza os dados na tabela tbDono
+        UPDATE tbDono 
+        SET nome_dono = @nome_dono, cpf_dono = @cpf_dono, 
+            rg_dono = @rg_dono, tel_dono = @tel_dono, 
+            cel_dono = @cel_dono, email_dono = @email_dono, 
+            cep_dono = @cep, numcasa_dono = @numero 
+        WHERE cod_dono = @cod_dono;
+    ";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql1, connection))
+                {
+                    command.CommandType = CommandType.Text;
+
+                    // Adiciona parâmetros para tbEndereco
                     command.Parameters.AddWithValue("@cep", cep);
                     command.Parameters.AddWithValue("@numero", numero);
                     command.Parameters.AddWithValue("@rua", rua);
@@ -189,6 +197,9 @@ namespace PetView.Data
                     command.Parameters.AddWithValue("@complemento", complemento);
                     command.Parameters.AddWithValue("@cidade", cidade);
                     command.Parameters.AddWithValue("@uf", uf);
+
+                    // Adiciona parâmetros para tbDono
+                    command.Parameters.AddWithValue("@cod_dono", codDono);
                     command.Parameters.AddWithValue("@nome_dono", nomeDono);
                     command.Parameters.AddWithValue("@cpf_dono", cpfDono);
                     command.Parameters.AddWithValue("@rg_dono", rgDono);
@@ -199,6 +210,7 @@ namespace PetView.Data
                     try
                     {
                         connection.Open();
+                        // Execute a transação
                         command.ExecuteNonQuery();
                         Console.WriteLine("Dados do dono atualizados com sucesso.");
                     }
@@ -209,9 +221,13 @@ namespace PetView.Data
                     }
                 }
             }
-
-
         }
 
+
+
+
+
     }
+
+
 }

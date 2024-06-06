@@ -12,6 +12,9 @@ using PetView.Edit;
 using PetView.Data;
 using PetView.DAL;
 using PetView.Controllers;
+using PetView.View.Edit;
+using PetView.Models;
+using System.Xml.Linq;
 
 namespace PetView
 {
@@ -19,6 +22,7 @@ namespace PetView
     {
         public Int32 id;
         public string tb;
+        public string nomeTB;
 
         public Registros()
         {
@@ -34,6 +38,7 @@ namespace PetView
         {
             List<string> tabelas = new List<string> { "Animal", "Dono", "Consulta", "Exame", "Funcionário", "Médico", "Tratamento" };
             tabelas.ForEach(item => cboTabelas.Items.Add(item));
+          
             cboTabelas.SelectedIndex = -1;
         }
 
@@ -58,6 +63,8 @@ namespace PetView
                     DataTable dtbl = new DataTable();
                     sqlDa.Fill(dtbl);
                     dgvRegistros.DataSource = dtbl;
+                    Console.Write(nometab);
+                   nomeTB = nometab;
                 }
                 catch (SqlException e)
                 {
@@ -183,8 +190,34 @@ namespace PetView
 
         private void btn_deletar_Click(object sender, EventArgs e)
         {
-            F_EditDono f_EditDono = new F_EditDono(id);
-            f_EditDono.ShowDialog();
+            if (nomeTB == "dono")
+            {
+                F_EditDono f_EditDono = new F_EditDono(id);
+                f_EditDono.ShowDialog();
+            }
+            else if (nomeTB == "func")
+            {
+                F_EditFuncionario f_EditFuncionario = new F_EditFuncionario(id);
+                f_EditFuncionario.ShowDialog();
+            }
+            else if (nomeTB == "medico") 
+            {
+                F_EditMedico f_EditMedico = new F_EditMedico(id);
+                f_EditMedico.ShowDialog();
+            }else if (nomeTB == "animal")
+            {
+                MessageBox.Show("Escolha uma opição valida");
+            
+        }else if (nomeTB == "consulta") 
+            {
+                MessageBox.Show("Escolha uma opição valida");
+            }else if (nomeTB == "exame") 
+            {
+                MessageBox.Show("Escolha uma opição valida");
+            }else if (nomeTB == "tratamento") 
+            {
+                MessageBox.Show("Escolha uma opição valida");
+            }
 
         }
         private void dgvRegistros_SelectionChanged(object sender, EventArgs e)

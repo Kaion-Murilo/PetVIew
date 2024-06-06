@@ -5,10 +5,10 @@
     <Setting Name="Configuração" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionString&gt;Data Source=NOTE1;Initial Catalog=dbPetView;User ID=sa;Password=123456789;Encrypt=False&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=(local);Initial Catalog=dbPetView;Integrated Security=True;Encrypt=False&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=NOTE1;Initial Catalog=dbPetView;User ID=sa;Password=123456789;Encrypt=False</Value>
+      <Value Profile="(Default)">Data Source=(local);Initial Catalog=dbPetView;Integrated Security=True;Encrypt=False</Value>
     </Setting>
   </Settings>
 </SettingsFile>
