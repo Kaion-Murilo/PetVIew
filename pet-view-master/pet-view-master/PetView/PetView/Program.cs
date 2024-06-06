@@ -9,13 +9,14 @@ namespace PetView
     static class Program
     {
         /// <summary>
-        /// The main entry point for the application.
+        /// Ponto de entrada principal da aplicação.
         /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            // Inicia a aplicação, exibindo a tela de login
             Application.Run(new Login());
         }
     }
