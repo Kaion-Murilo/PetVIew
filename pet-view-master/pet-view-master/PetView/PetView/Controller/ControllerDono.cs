@@ -39,17 +39,6 @@ namespace PetView.Controller
             string nomeDono, string cpfDono, string rgDono,
             string telDono, string celDono, string emailDono)
         {
-            // Imprimindo os valores recebidos para atualização do endereço no console
-            Console.WriteLine($"Entrou em Controller");
-            Console.WriteLine("Valores recebidos para atualização do endereço:");
-            Console.WriteLine($"CEP: {cep}");
-            Console.WriteLine($"Número: {numero}");
-            Console.WriteLine($"Rua: {rua}");
-            Console.WriteLine($"Bairro: {bairro}");
-            Console.WriteLine($"Complemento: {complemento}");
-            Console.WriteLine($"Cidade: {cidade}");
-            Console.WriteLine($"UF: {uf}");
-            Console.WriteLine("----------------------------");
 
             // Chamando os métodos de atualização de endereço e dono das respectivas classes DAL
             EnderecoDAL.Update(cep, numero, rua, bairro, complemento, cidade, uf);

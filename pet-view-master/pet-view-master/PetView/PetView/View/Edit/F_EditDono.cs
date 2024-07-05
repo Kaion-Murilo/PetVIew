@@ -114,4 +114,14 @@ namespace PetView.Edit
         // Evento de clique do botão "Excluir"
         private void btnExcluir_Click(object sender, EventArgs e)
         {
+            DialogResult res = MessageBox.Show("Confirmar Exclusao? ", "Excluir?", MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes)
+            {
+                ControllerDono.Delete(id);
+
+                Close();
+            }
+        }
+    }
+}
             // Exibe um diálogo de confirma

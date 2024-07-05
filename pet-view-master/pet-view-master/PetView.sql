@@ -1171,10 +1171,10 @@ GO
 
 -- INSERTS DE TESTE
 
-exec sp_insert_func '12345678', 22, 'Rua rua', 'Bairro bairro', null, 'Cidade cidade', 'UF', 'Jorge', '12345678901', '123456789', '11986376726', '27362651', 'aaa', 'func', 1111
+exec sp_insert_func '12345678', 22, 'Rua rua', 'Bairro bairro', null, 'Cidade cidade', 'UF', 'Kaion', '12345678901', '123456789', '11986376726', '27362651', 'aaa', 'func', 1111
 GO
 
-exec sp_insert_usuario 'nome', 'senha', 1
+exec sp_insert_usuario 'Kaion', '12345', 1
 GO
 
 update tbUsuario set ativacao_usuario = 0 where cod_usuario = 1
@@ -1183,7 +1183,7 @@ GO
 exec sp_insert_medico '34647384', 12, 'a', 'b', null, 'a', 'ff', 33333, 'Roberta', 'a', '733774584', '33333333', '3333333', '44444', 'aa', 34344
 GO
 
-exec sp_insert_usuario 'med', '123', null, 1
+exec sp_insert_usuario 'Carla', '123', null, 2
 GO
 
 update tbUsuario set ativacao_usuario = 0 where cod_usuario = 2

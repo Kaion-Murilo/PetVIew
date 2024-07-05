@@ -1,20 +1,22 @@
-﻿using PetView.Models;
+﻿// Importações de namespaces necessários
+using PetView.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-
+using Xunit; // Importa o framework de testes Xunit
 
 namespace PetViewTeste.Model
 {
+    // Classe de testes para a classe Exame
     public class ExameTests
     {
+        // Teste para verificar o construtor de Exame com consulta
         [Fact]
         public void TestExameConstructorWithConsulta()
         {
-            // Arrange
+            // Arrange - Configuração inicial
             string observacao = "Observação do exame";
             double custo = 100.0;
             string tipoExame = "Hemograma";
@@ -23,10 +25,10 @@ namespace PetViewTeste.Model
             int codMedico = 1;
             int codConsulta = 1;
 
-            // Act
+            // Act - Ação (chamada do construtor)
             Exame exame = new Exame(observacao, custo, tipoExame, dataExame, codAnimal, codMedico, codConsulta);
 
-            // Assert
+            // Assert - Verificação dos resultados esperados
             Assert.True(exame.Observacao == observacao);
             Assert.True(exame.Custo == custo);
             Assert.True(exame.TipoExame == tipoExame);
@@ -36,17 +38,18 @@ namespace PetViewTeste.Model
             Assert.True(exame.Consulta.CodConsulta == codConsulta);
         }
 
+        // Teste para verificar o construtor de Exame sem consulta
         [Fact]
         public void TestExameConstructorWithoutConsulta()
         {
-            // Arrange
+            // Arrange - Configuração inicial
             int codExame = 1;
             string observacao = "Observação do exame";
 
-            // Act
+            // Act - Ação (chamada do construtor)
             Exame exame = new Exame(codExame, observacao);
 
-            // Assert
+            // Assert - Verificação dos resultados esperados
             Assert.True(exame.CodExame == codExame);
             Assert.True(exame.Observacao == observacao);
             Assert.Null(exame.medico);
